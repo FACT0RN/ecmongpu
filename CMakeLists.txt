@@ -88,7 +88,7 @@ else()
     OUTPUT_STRIP_TRAILING_WHITESPACE
     )
   if("${GPU_ARCHITECTURE}" STREQUAL "")
-    set(GPU_ARCHITECTURE "sm_60;sm_61;sm_62;sm_70;sm_75;sm_80;sm_86;sm_89")
+    set(GPU_ARCHITECTURE "sm_60;sm_61;sm_62;sm_70;sm_75;sm_80;sm_86")
     message("Could not detect CUDA device architecture, using ${GPU_ARCHITECTURE}")
   else()
     message("Detected CUDA architecture ${GPU_ARCHITECTURE}")
