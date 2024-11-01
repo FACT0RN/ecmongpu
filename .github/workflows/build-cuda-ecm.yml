@@ -29,6 +29,6 @@ jobs:
       - run: make -j $(nproc)
 
       - uses: actions/upload-artifact@v3
-            with:
-              name: cuda-ecm
-              path: bin/cuda-ecm
+        with:
+          name: cuda-ecm
+          path: bin/cuda-ecm
