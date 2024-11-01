@@ -29,7 +29,7 @@ jobs:
         with:
           cuda: '12.6.2'
 
-      - run: env GPU_ARCH=sm_89 cmake .
+      - run: cmake .
 
       - run: make -j $(nproc)
 
@@ -37,3 +37,9 @@ jobs:
         with:
           name: cuda-ecm
           path: bin/cuda-ecm
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: bin/cuda-ecm
