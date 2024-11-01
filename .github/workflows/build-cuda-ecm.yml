@@ -19,17 +19,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Free Disk Space (Ubuntu)
-        uses: jlumbroso/free-disk-space@main
+        uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be
         with:
           tool-cache: false
 
       - name: Setup CUDA
-        uses: Jimver/cuda-toolkit@master
+        uses: Jimver/cuda-toolkit@28e983fc6bf47e7a732934aa029a6738e2ce16e4
         id: cuda-toolkit
         with:
           cuda: '12.6.2'
 
-      - run: cmake -DGPU_ARCHITECTURE=sm_89 .
+      - run: env GPU_ARCH=sm_89 cmake .
 
       - run: make -j $(nproc)
 
