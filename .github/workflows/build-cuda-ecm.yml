@@ -1,0 +1,34 @@
+name: Build cuda-ecm
+
+# Configures this workflow to run every time a change is pushed to the branch called `release`.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+# There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup CUDA
+        uses: Jimver/cuda-toolkit@master
+        id: cuda-toolkit
+        with:
+          cuda: '12.6.2'
+
+      - run: cmake -DGPU_ARCHITECTURE=sm_89 .
+
+      - run: make -j $(nproc)
+
+      - uses: actions/upload-artifact@v3
+            with:
+              name: cuda-ecm
+              path: bin/cuda-ecm
