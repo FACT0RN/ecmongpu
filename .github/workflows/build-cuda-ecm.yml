@@ -4,8 +4,8 @@ name: Build cuda-ecm
 on:
   workflow_dispatch:
   push:
-    branches:
-      - master
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 # There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
 jobs:
