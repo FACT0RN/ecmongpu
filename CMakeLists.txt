@@ -19,7 +19,7 @@ set(LIMB_BITS 32)
 if(DEFINED ENV{BITWIDTH})
 	set(BITWIDTH $ENV{BITWIDTH})
 else()
-	set(BITWIDTH 448)
+	set(BITWIDTH 480)
 endif()
 message("Building for ${BITWIDTH}-bit moduli")
 
